@@ -1,0 +1,23 @@
+.filter-container {
+  width: 400px;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 22px;
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.filter__input {
+  height: 20px;
+  padding-left: 15px;
+
+  transition: all 350ms ease;
+}
+
+.filter__input:hover {
+  background: rgb(219, 205, 205);
+  border-color: rgb(31, 140, 177);
+}
