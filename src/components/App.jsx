@@ -14,15 +14,18 @@ export const App = () => {
   ]);
   const [filter, setFilter] = useState('');
 
-  // useEffect(() => {
-  //   const storageContacts = localStorage.getItem('contacts');
-  //   const parsedContacts = JSON.parse(storageContacts);
+  useEffect(() => {
+    const storageContacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(storageContacts);
 
-  //   if (parsedContacts && parsedContacts.length !== 0) {
-  //     setContacts(parsedContacts);
-  //   }
-  // }, []);
+    if (parsedContacts) {
+      setContacts(parsedContacts);
+    }
+  }, []);
 
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
   const handleChangeFilter = e => setFilter(e.currentTarget.value);
 
   const formAddContact = data => {
