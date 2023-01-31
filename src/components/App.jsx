@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { ContactsList } from './Contacts/ContactsList';
 import { FilterBar } from './Filter/Filter';
 import { Form } from './Form/Form';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const App = () => {
   const [contacts, setContacts] = useState([
@@ -24,11 +23,7 @@ export const App = () => {
   //   }
   // }, []);
 
-  // проверить
-  const handleChangeFilter = e => {
-    console.log(e.currentTarget.value);
-    // setFilter(e.currentTarget.value);
-  };
+  const handleChangeFilter = e => setFilter(e.currentTarget.value);
 
   const formAddContact = data => {
     const dataContact = [
@@ -54,13 +49,11 @@ export const App = () => {
   };
 
   const deleteContact = contactId => {
-    setContacts(prevState =>
-      prevState.contacts.fliter(contact => contact.id !== contactId)
-    );
+    setContacts(contacts.filter(contact => contact.id !== contactId));
   };
 
   const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter)
+    contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
@@ -138,7 +131,7 @@ export const App = () => {
 //   };
 
 //   deleteContact = contactId => {
-//     // ? Instead creating new array from contacts - we just filter
+// // ? Instead creating new array from contacts - we just filter
 //     this.setState(prevState => ({
 //       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
 //     }));
