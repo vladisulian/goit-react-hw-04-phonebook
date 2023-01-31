@@ -16,9 +16,8 @@ export const App = () => {
 
   useEffect(() => {
     const storageContacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(storageContacts);
-
-    if (parsedContacts) {
+    if (storageContacts) {
+      const parsedContacts = JSON.parse(storageContacts);
       setContacts(parsedContacts);
     }
   }, []);
@@ -26,6 +25,7 @@ export const App = () => {
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
+
   const handleChangeFilter = e => setFilter(e.currentTarget.value);
 
   const formAddContact = data => {
