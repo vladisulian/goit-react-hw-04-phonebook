@@ -51,7 +51,6 @@ export const App = () => {
       }
     }
     setContacts([...contacts, ...dataContact]);
-    // contacts.concat(dataContact));
   };
 
   const deleteContact = contactId => {
