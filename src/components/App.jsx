@@ -4,6 +4,7 @@ import { ContactsList } from './Contacts/ContactsList';
 import { FilterBar } from './Filter/Filter';
 import { Form } from './Form/Form';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 export const App = () => {
   const [contacts, setContacts] = useState([
@@ -14,9 +15,19 @@ export const App = () => {
   ]);
   const [filter, setFilter] = useState('');
 
+  // useEffect(() => {
+  //   const storageContacts = localStorage.getItem('contacts');
+  //   const parsedContacts = JSON.parse(storageContacts);
+
+  //   if (parsedContacts && parsedContacts.length !== 0) {
+  //     setContacts(parsedContacts);
+  //   }
+  // }, []);
+
   // проверить
   const handleChangeFilter = e => {
-    setFilter(e.currentTarget.value);
+    console.log(e.currentTarget.value);
+    // setFilter(e.currentTarget.value);
   };
 
   const formAddContact = data => {
@@ -39,12 +50,8 @@ export const App = () => {
         return;
       }
     }
-    setContacts(prevState => prevState.contacts.concat(dataContact));
-    this.setState(prevState => {
-      return {
-        contacts: prevState.contacts.concat(dataContact),
-      };
-    });
+    setContacts([...contacts, ...dataContact]);
+    // contacts.concat(dataContact));
   };
 
   const deleteContact = contactId => {
@@ -54,7 +61,7 @@ export const App = () => {
   };
 
   const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+    contact.name.toLowerCase().includes(filter)
   );
 
   return (
