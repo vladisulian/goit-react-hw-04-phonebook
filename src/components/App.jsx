@@ -22,8 +22,6 @@ export const App = () => {
   });
   const [filter, setFilter] = useState('');
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
@@ -42,13 +40,11 @@ export const App = () => {
       );
     });
 
-    for (const contact of contacts) {
-      if (isExist) {
-        alert(
-          `Name '${dataContact[0].name}' or number '${dataContact[0].number}' is already in contacts!`
-        );
-        return;
-      }
+    if (isExist) {
+      alert(
+        `Name '${dataContact[0].name}' or number '${dataContact[0].number}' is already in contacts!`
+      );
+      return;
     }
     setContacts([...contacts, ...dataContact]);
   };
